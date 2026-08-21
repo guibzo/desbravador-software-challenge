@@ -1,0 +1,9 @@
+@import 'tailwindcss';
+
+@import './browser.css';
+@import './layers.css';
+@import './themes.css';
+@import './tokens.css';
+@import './utilities.css';
+
+@custom-variant dark (&:is(.dark *));

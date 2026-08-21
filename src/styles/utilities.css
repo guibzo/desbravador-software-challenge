@@ -1,0 +1,27 @@
+@utility no-scrollbar {
+  /* Firefox */
+  scrollbar-width: none !important;
+  scrollbar-color: transparent transparent !important;
+
+  /* WebKit (Chrome, Safari, Edge) */
+  &::-webkit-scrollbar {
+    width: 0 !important;
+    height: 0 !important;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: transparent !important;
+    border: none !important;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent !important;
+    border: none !important;
+  }
+
+  /* IE 10+ */
+  -ms-overflow-style: none !important;
+
+  /* Fallback para navegadores antigos */
+  overflow: -moz-scrollbars-none;
+}
