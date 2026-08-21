@@ -1,6 +1,7 @@
-import { Building2, CalendarDays, Link2, MapPin, Users } from 'lucide-react'
+import { LucideBuilding2, LucideCalendarDays, LucideLink2, LucideMapPin, LucideUsers } from 'lucide-react'
 
-import { formatDate, formatNumber, type GithubUser } from '@/lib/github'
+import { formatDate, formatNumber } from '@/lib/format'
+import type { GithubUser } from '@/types/github-user'
 
 type Props = {
   user: GithubUser
@@ -18,19 +19,19 @@ export const ProfileCard = ({ user }: Props) => {
 
   return (
     <aside className='border-border bg-card rounded-2xl p-5 shadow-sm sm:p-6 lg:sticky lg:top-24 h-fit border'>
-      <div className='gap-4 flex items-start'>
+      <div className='flex flex-col items-center text-center'>
         <img
           src={user.avatar_url}
           alt={`Avatar de ${user.login}`}
           className='size-20 rounded-2xl ring-primary/10 sm:size-24 ring-4'
         />
-        <div className='min-w-0 pt-1'>
-          <h2 className='text-xl font-bold tracking-tight truncate'>{user.name || user.login}</h2>
+        <div className='mt-4 min-w-0 max-w-full'>
+          <h2 className='text-xl font-bold tracking-tight break-words'>{user.name || user.login}</h2>
           <a
             href={user.html_url}
             target='_blank'
             rel='noreferrer'
-            className='text-primary mt-0.5 text-sm inline-block hover:underline'
+            className='text-primary mt-0.5 text-sm inline-block break-all hover:underline'
           >
             @{user.login}
           </a>
@@ -48,13 +49,13 @@ export const ProfileCard = ({ user }: Props) => {
       <div className='text-muted-foreground mt-5 space-y-3 text-sm'>
         {user.location && (
           <p className='gap-2.5 flex items-center'>
-            <MapPin className='text-primary shrink-0' size={16} />
+            <LucideMapPin className='text-primary shrink-0' size={16} />
             <span>{user.location}</span>
           </p>
         )}
         {user.company && (
           <p className='gap-2.5 flex items-center'>
-            <Building2 className='text-primary shrink-0' size={16} />
+            <LucideBuilding2 className='text-primary shrink-0' size={16} />
             <span>{user.company}</span>
           </p>
         )}
@@ -65,12 +66,12 @@ export const ProfileCard = ({ user }: Props) => {
             rel='noreferrer'
             className='hover:text-primary gap-2.5 flex items-center transition-colors'
           >
-            <Link2 className='text-primary shrink-0' size={16} />
+            <LucideLink2 className='text-primary shrink-0' size={16} />
             <span className='truncate'>{user.blog}</span>
           </a>
         )}
         <p className='gap-2.5 flex items-center'>
-          <CalendarDays className='text-primary shrink-0' size={16} />
+          <LucideCalendarDays className='text-primary shrink-0' size={16} />
           <span>Entrou em {formatDate(user.created_at)}</span>
         </p>
       </div>
@@ -82,7 +83,7 @@ export const ProfileCard = ({ user }: Props) => {
         className='border-border text-foreground hover:bg-accent mt-6 h-10 gap-2 rounded-lg text-sm font-medium flex
           items-center justify-center border transition-colors'
       >
-        <Users size={16} /> Ver perfil no GitHub
+        <LucideUsers size={16} /> Ver perfil no GitHub
       </a>
     </aside>
   )

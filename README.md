@@ -16,9 +16,9 @@ A aplicação usa a API pública do GitHub, sem necessidade de configurar uma ch
 - Busca de usuários do GitHub com avatar, bio, estatísticas e links públicos.
 - Lista de repositórios ordenada por estrelas, nome, forks ou data de atualização.
 - Página de detalhes com métricas, tópicos e link para o repositório no GitHub.
-- Rotas client-side para a busca (`/`) e detalhes (`/repos/:owner/:repository`).
+- Rotas client-side para home (`/`), usuário (`/users/:username`) e repositório (`/repos/:owner/:repository`).
 - Layout responsivo.
 
 ## Tecnologias
 
-React, TypeScript, Vite, Tailwind CSS, TanStack Query, use-debounce e Fetch API.
+React, TypeScript, Vite, Tailwind CSS, TanStack Query, React Router DOM, hook de debounce próprio e Fetch API.

@@ -1,7 +1,8 @@
-import { ExternalLink, LucideGitFork, LucideStar } from 'lucide-react'
+import { LucideExternalLink, LucideGitFork, LucideStar } from 'lucide-react'
+import { Link } from 'react-router-dom'
 
-import { formatDate, formatNumber, type GithubRepository } from '@/lib/github'
-import { Link } from '@/lib/router'
+import { formatDate, formatNumber } from '@/lib/format'
+import type { GithubRepository } from '@/types/github-repository'
 
 type Props = {
   repository: GithubRepository
@@ -15,7 +16,7 @@ export const RepositoryCard = ({ repository }: Props) => (
     <div className='gap-4 flex items-start justify-between'>
       <div className='min-w-0'>
         <Link
-          href={`/repos/${repository.owner.login}/${repository.name}`}
+          to={`/repos/${repository.owner.login}/${repository.name}`}
           className='text-foreground group-hover:text-primary gap-2 text-base font-bold flex items-center truncate
             transition-colors'
         >
@@ -38,7 +39,7 @@ export const RepositoryCard = ({ repository }: Props) => (
         aria-label={`Abrir ${repository.name} no GitHub`}
         className='text-muted-foreground hover:text-primary shrink-0 transition-colors'
       >
-        <ExternalLink size={17} />
+        <LucideExternalLink size={17} />
       </a>
     </div>
 

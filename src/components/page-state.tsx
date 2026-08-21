@@ -1,4 +1,4 @@
-import { AlertCircle, RefreshCw } from 'lucide-react'
+import { LucideAlertCircle, LucideRefreshCw } from 'lucide-react'
 
 import { Button } from '@/components/ui/button'
 
@@ -13,7 +13,7 @@ export const ErrorState = ({ error, onRetry }: Props) => (
       justify-center border text-center'
   >
     <span className='bg-destructive/10 text-destructive size-11 flex items-center justify-center rounded-full'>
-      <AlertCircle size={22} />
+      <LucideAlertCircle size={22} />
     </span>
 
     <div>
@@ -23,7 +23,7 @@ export const ErrorState = ({ error, onRetry }: Props) => (
 
     {onRetry && (
       <Button variant='outline' size='sm' onClick={onRetry}>
-        <RefreshCw size={15} /> Tentar novamente
+        <LucideRefreshCw size={15} /> Tentar novamente
       </Button>
     )}
   </div>

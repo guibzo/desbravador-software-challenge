@@ -1,25 +1,25 @@
-import { useLocation } from '@/lib/router'
+import { Route, Routes, useParams } from 'react-router-dom'
+
 import { Home } from '@/pages/home'
 import { Repository } from '@/pages/repository'
 
-const decodeSegment = (value: string) => {
-  try {
-    return decodeURIComponent(value)
-  } catch {
-    return ''
-  }
+const UserRoute = () => {
+  const { username = '' } = useParams()
+
+  return <Home initialUsername={username} />
 }
 
-export const App = () => {
-  const location = useLocation()
-  const repositoryMatch = location.pathname.match(/^\/repos\/([^/]+)\/([^/]+)\/?$/)
+const RepositoryRoute = () => {
+  const { owner = '', repository = '' } = useParams()
 
-  if (repositoryMatch) {
-    const owner = decodeSegment(repositoryMatch[1])
-    const repository = decodeSegment(repositoryMatch[2])
-
-    if (owner && repository) return <Repository owner={owner} repository={repository} />
-  }
-
-  return <Home />
+  return <Repository owner={owner} repository={repository} />
 }
+
+export const App = () => (
+  <Routes>
+    <Route path='/' element={<Home />} />
+    <Route path='/users/:username' element={<UserRoute />} />
+    <Route path='/repos/:owner/:repository' element={<RepositoryRoute />} />
+    <Route path='*' element={<Home />} />
+  </Routes>
+)

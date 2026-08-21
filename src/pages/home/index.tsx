@@ -1,17 +1,18 @@
-import { ChevronDown, LucideSearch } from 'lucide-react'
+import { LucideChevronDown, LucideSearch } from 'lucide-react'
 import { useEffect, useMemo, useState } from 'react'
-import { useDebounce } from 'use-debounce'
+import { useNavigate } from 'react-router-dom'
 
-import { Empty } from '@/components/empty'
 import { Header } from '@/components/header'
 import { ErrorState } from '@/components/page-state'
-import { ProfileCard } from '@/components/profile-card'
-import { RepositoryCard } from '@/components/repository-card'
-import { ProfileSkeleton } from '@/components/skeletons/profile-skeleton'
-import { RepositorySkeleton } from '@/components/skeletons/repository-skeleton'
+import { useDebounce } from '@/hooks/use-debounce'
 import { useGetGithubUser } from '@/http/queries/use-get-github-user'
 import { useGetUserRepositories } from '@/http/queries/use-get-user-repositories'
-import { navigate, useLocation } from '@/lib/router'
+import { Empty } from '@/pages/home/components/empty'
+import { ProfileCard } from '@/pages/home/components/profile-card'
+import { ProfileSkeleton } from '@/pages/home/components/profile-skeleton'
+import { RepositoryCard } from '@/pages/home/components/repository-card'
+import { RepositorySkeleton } from '@/pages/home/components/repository-skeleton'
+import { SearchForm } from '@/pages/home/components/search-form'
 
 type SortOption = 'stars' | 'name' | 'forks' | 'updated'
 
@@ -22,17 +23,16 @@ const sortOptions: { value: SortOption; label: string }[] = [
   { value: 'updated', label: 'Mais recentes' },
 ]
 
-const getInitialUsername = () => new URLSearchParams(window.location.search).get('user')?.trim() ?? ''
+type Props = {
+  initialUsername?: string
+}
 
-export const Home = () => {
-  const location = useLocation()
-  const [username, setUsername] = useState(getInitialUsername)
+export const Home = ({ initialUsername = '' }: Props) => {
+  const [username, setUsername] = useState(initialUsername)
   const [sort, setSort] = useState<SortOption>('stars')
-  const [debouncedUsername] = useDebounce(username, 400)
+  const debouncedUsername = useDebounce(username, 400)
 
-  useEffect(() => {
-    setUsername(new URLSearchParams(location.search).get('user')?.trim() ?? '')
-  }, [location.search])
+  useEffect(() => setUsername(initialUsername), [initialUsername])
 
   const userQuery = useGetGithubUser(debouncedUsername)
   const repositoriesQuery = useGetUserRepositories(debouncedUsername)
@@ -51,17 +51,27 @@ export const Home = () => {
     })
   }, [repositoriesQuery.data, sort])
 
+  const navigate = useNavigate()
+
   const handleSearch = (value: string) => {
     setUsername(value)
-    navigate(`/?user=${encodeURIComponent(value)}`)
+    navigate(`/users/${encodeURIComponent(value)}`)
   }
 
   return (
     <div className='bg-background min-h-screen'>
-      <Header initialUsername={username} onSearch={handleSearch} />
+      <Header
+        initialUsername={initialUsername}
+        onSearch={initialUsername ? handleSearch : undefined}
+      />
 
       <main className='max-w-7xl px-4 py-8 sm:px-6 sm:py-10 lg:px-8 container mx-auto'>
-        {!username && <Welcome />}
+        {!username && <Welcome initialUsername={username} onSearch={handleSearch} />}
+        {username && !initialUsername && (
+          <div className='mb-8 flex justify-center'>
+            <SearchForm initialUsername={username} onSearch={handleSearch} />
+          </div>
+        )}
 
         {username && isLoading && (
           <div className='gap-8 lg:grid-cols-[280px_minmax(0,1fr)] grid items-start'>
@@ -84,7 +94,7 @@ export const Home = () => {
           />
         )}
 
-        {user && !error && (
+        {user && !error && !isLoading && (
           <div className='gap-8 lg:grid-cols-[280px_minmax(0,1fr)] grid items-start'>
             <ProfileCard user={user} />
 
@@ -114,7 +124,7 @@ export const Home = () => {
                         </option>
                       ))}
                     </select>
-                    <ChevronDown
+                    <LucideChevronDown
                       className='text-muted-foreground right-2.5 pointer-events-none absolute top-1/2 -translate-y-1/2'
                       size={15}
                     />
@@ -142,16 +152,24 @@ export const Home = () => {
   )
 }
 
-const Welcome = () => (
+type WelcomeProps = {
+  initialUsername: string
+  onSearch: (username: string) => void
+}
+
+const Welcome = ({ initialUsername, onSearch }: WelcomeProps) => (
   <section className='max-w-2xl px-4 py-16 sm:py-24 mx-auto flex flex-col items-center text-center'>
     <div className='bg-primary/10 text-primary mb-6 size-16 rounded-2xl flex items-center justify-center'>
       <LucideSearch size={30} />
     </div>
 
-    <p className='text-primary mb-3 text-xs font-bold tracking-[0.2em] uppercase'>Explorador de código</p>
+    <p className='text-primary mb-3 text-xs font-bold tracking-[0.2em] uppercase'>
+      Explorador de código - Guilherme Viana
+    </p>
     <h1 className='text-3xl font-bold tracking-tight sm:text-5xl'>RepoScout</h1>
     <p className='text-muted-foreground mt-5 max-w-lg leading-7'>
       Pesquise um usuário do GitHub e explore seus projetos, tecnologias e repositórios.
     </p>
+    <SearchForm initialUsername={initialUsername} onSearch={onSearch} />
   </section>
 )

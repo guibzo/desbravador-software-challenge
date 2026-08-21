@@ -1,12 +1,16 @@
 import { useQuery } from '@tanstack/react-query'
 
-import { getGithubRepositories, type GithubRepository } from '@/lib/github'
+import { usegithub } from '@/hooks/use-github'
+import type { GithubRepository } from '@/types/github-repository'
 
-export const useGetUserRepositories = (username: string) =>
-  useQuery<GithubRepository[]>({
+export const useGetUserRepositories = (username: string) => {
+  const { getUserRepositories } = usegithub()
+
+  return useQuery<GithubRepository[]>({
     queryKey: ['github-user-repositories', username],
-    queryFn: ({ signal }) => getGithubRepositories(username, signal),
+    queryFn: ({ signal }) => getUserRepositories(username, signal),
     enabled: Boolean(username),
     retry: false,
     staleTime: 5 * 60 * 1000,
   })
+}

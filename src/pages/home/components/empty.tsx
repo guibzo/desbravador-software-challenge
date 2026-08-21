@@ -1,4 +1,4 @@
-import { SearchX } from 'lucide-react'
+import { LucideSearchX } from 'lucide-react'
 
 import { Button } from '@/components/ui/button'
 
@@ -15,7 +15,7 @@ export const Empty = ({ title, description, actionLabel, onAction }: Props) => (
       justify-center border border-dashed text-center'
   >
     <span className='bg-muted text-muted-foreground mb-3 size-11 flex items-center justify-center rounded-full'>
-      <SearchX size={21} />
+      <LucideSearchX size={21} />
     </span>
 
     <h2 className='text-foreground text-sm font-semibold'>{title}</h2>
