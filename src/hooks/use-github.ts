@@ -1,6 +1,6 @@
-import { GithubApiError } from '@/types/github-api-error'
-import type { GithubRepository } from '@/types/github-repository'
-import type { GithubUser } from '@/types/github-user'
+import { GithubApiError } from '@/@types/github-api-error'
+import type { GithubRepository } from '@/@types/github-repository'
+import type { GithubUser } from '@/@types/github-user'
 
 const githubRequest = async <Data>(path: string, signal?: AbortSignal): Promise<Data> => {
   const response = await fetch(`https://api.github.com${path}`, {

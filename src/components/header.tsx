@@ -24,7 +24,10 @@ export const Header = ({ initialUsername = '', onSearch }: Props) => {
 
   return (
     <header className='border-border/80 bg-card/90 top-0 backdrop-blur-md sticky z-10 border-b'>
-      <div className='max-w-7xl gap-4 px-6 py-4 max-sm:px-4 lg:px-8 container mx-auto flex flex-wrap items-center'>
+      <div
+        className='max-w-7xl gap-4 px-6 py-4 max-sm:px-4 lg:px-8 max-sm:justify-center relative container mx-auto flex
+          flex-wrap items-center justify-start'
+      >
         <Link to='/' className='text-foreground gap-2.5 font-bold tracking-tight flex items-center'>
           <span
             className='bg-primary text-primary-foreground size-9 rounded-xl shadow-sm flex items-center justify-center'
@@ -39,25 +42,26 @@ export const Header = ({ initialUsername = '', onSearch }: Props) => {
         {onSearch && (
           <form
             onSubmit={handleSubmit}
-            className='min-w-75 max-sm:order-3 max-sm:ml-0 max-sm:w-full max-sm:min-w-0 lg:min-w-95 order-0 ml-auto
-              w-auto'
+            className='min-w-75 max-sm:static max-sm:order-3 max-sm:mt-3 max-sm:w-full max-sm:min-w-0 lg:min-w-95
+              right-6 gap-2 max-sm:translate-y-0 max-xs:flex-col absolute top-1/2 flex -translate-y-1/2'
           >
-            <label className='relative block'>
+            <label className='min-w-0 relative block flex-1'>
               <span className='sr-only'>Buscar usuário do GitHub</span>
               <LucideSearch
                 className='text-muted-foreground left-3.5 pointer-events-none absolute top-1/2 -translate-y-1/2'
                 size={17}
               />
+
               <Input
                 value={username}
                 onChange={(event) => setUsername(event.target.value)}
                 placeholder='Buscar usuário do GitHub...'
-                className='pr-20 pl-10'
+                className='h-9 pr-20 pl-10'
               />
-              <Button type='submit' size='sm' className='top-1 right-1 absolute'>
-                Buscar
-              </Button>
             </label>
+            <Button type='submit' size='sm' className='h-9 max-xs:w-full'>
+              Buscar
+            </Button>
           </form>
         )}
       </div>

@@ -6,10 +6,8 @@ interface Props<T> {
   children: ReactNode | ((item: NonNullable<T>) => ReactNode)
 }
 
-const Show = <T,>({ when: condition, fallback = null, children }: Props<T>) => {
+export const Show = <T,>({ when: condition, fallback = null, children }: Props<T>) => {
   if (!condition) return <>{fallback}</>
 
   return typeof children === 'function' ? children(condition as NonNullable<T>) : children
 }
-
-export { Show }

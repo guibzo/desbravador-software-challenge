@@ -1,7 +1,7 @@
 import { LucideBuilding2, LucideCalendarDays, LucideLink2, LucideMapPin, LucideUsers } from 'lucide-react'
 
+import type { GithubUser } from '@/@types/github-user'
 import { formatDate, formatNumber } from '@/lib/format'
-import type { GithubUser } from '@/types/github-user'
 
 type Props = {
   user: GithubUser
@@ -39,7 +39,11 @@ export const ProfileCard = ({ user }: Props) => {
         </div>
       </div>
 
-      {user.bio && <p className='text-muted-foreground mt-5 text-sm leading-6'>{user.bio}</p>}
+      {user.bio && (
+        <p className='text-muted-foreground mt-5 text-sm leading-6 max-lg:mx-auto max-lg:max-w-md max-lg:text-center'>
+          {user.bio}
+        </p>
+      )}
 
       <div className='border-border mt-6 py-4 grid grid-cols-3 divide-x border-y text-center'>
         <Stat value={user.public_repos} label='repositórios' />

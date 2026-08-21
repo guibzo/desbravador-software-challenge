@@ -17,9 +17,9 @@ export const ProfileSkeleton = () => (
     </div>
 
     <div className='mt-5 space-y-3'>
-      <Skeleton className='h-4 w-3/4' />
-      <Skeleton className='h-4 w-1/2' />
-      <Skeleton className='h-4 w-2/3' />
+      <Skeleton className='h-4 w-3/5' />
     </div>
+
+    <Skeleton className='mt-6 h-10 w-full' />
   </div>
 )

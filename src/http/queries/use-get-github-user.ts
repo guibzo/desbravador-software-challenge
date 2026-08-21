@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query'
 
+import type { GithubUser } from '@/@types/github-user'
 import { usegithub } from '@/hooks/use-github'
-import type { GithubUser } from '@/types/github-user'
 
 export const useGetGithubUser = (username: string) => {
   const { getUser } = usegithub()

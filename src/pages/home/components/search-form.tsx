@@ -20,7 +20,7 @@ export const SearchForm = ({ initialUsername, onSearch }: Props) => {
   }
 
   return (
-    <form onSubmit={handleSubmit} className='mt-8 max-w-lg gap-2 flex w-full'>
+    <form onSubmit={handleSubmit} className='mt-8 max-w-lg gap-2 max-xs:flex-col flex w-full'>
       <label className='flex-1'>
         <span className='sr-only'>Buscar usuário do GitHub</span>
         <Input
@@ -29,7 +29,9 @@ export const SearchForm = ({ initialUsername, onSearch }: Props) => {
           placeholder='Digite um usuário, ex: guibzo'
         />
       </label>
-      <Button type='submit'>Buscar</Button>
+      <Button type='submit' className='max-xs:w-full'>
+        Buscar
+      </Button>
     </form>
   )
 }

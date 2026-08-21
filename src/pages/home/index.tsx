@@ -1,19 +1,19 @@
 import { LucideChevronDown } from 'lucide-react'
 
+import type { GithubRepository } from '@/@types/github-repository'
+import type { GithubUser } from '@/@types/github-user'
+import { ErrorState } from '@/components/error-state'
 import { Header } from '@/components/header'
-import { ErrorState } from '@/components/page-state'
 import { Show } from '@/components/utils/show'
 import type { GithubOrderBy } from '@/hooks/use-github-order-by'
 import { Empty } from '@/pages/home/components/empty'
 import { ProfileCard } from '@/pages/home/components/profile-card'
 import { ProfileSkeleton } from '@/pages/home/components/profile-skeleton'
 import { RepositoryCard } from '@/pages/home/components/repository-card'
-import { RepositorySkeleton } from '@/pages/home/components/repository-skeleton'
+import { RepositoriesSkeleton } from '@/pages/home/components/repositories-skeleton'
 import { SearchForm } from '@/pages/home/components/search-form'
 import { Welcome } from '@/pages/home/components/welcome'
 import { useHome } from '@/pages/home/hooks/use-home'
-import type { GithubRepository } from '@/types/github-repository'
-import type { GithubUser } from '@/types/github-user'
 
 const sortOptions: { value: GithubOrderBy; label: string }[] = [
   { value: 'stars', label: 'Mais estrelas' },
@@ -49,11 +49,7 @@ export const Home = ({ initialUsername = '' }: Props) => {
         <Show when={Boolean(username && isLoading)}>
           <div className='max-sm:gap-6 gap-8 lg:grid-cols-[280px_minmax(0,1fr)] grid items-start'>
             <ProfileSkeleton />
-            <section className='gap-4 xl:grid-cols-2 grid'>
-              {Array.from({ length: 6 }, (_, index) => (
-                <RepositorySkeleton key={index} />
-              ))}
-            </section>
+            <RepositoriesSkeleton />
           </div>
         </Show>
 
@@ -79,10 +75,10 @@ type RepositoriesContentProps = {
 }
 
 const RepositoriesContent = ({ orderBy, repositories, setOrder, user }: RepositoriesContentProps) => (
-  <div className='max-sm:gap-6 gap-8 lg:grid-cols-[280px_minmax(0,1fr)] grid items-start'>
+  <div className='max-sm:gap-6 min-w-0 gap-8 lg:grid-cols-[280px_minmax(0,1fr)] grid items-start'>
     <ProfileCard user={user} />
 
-    <section aria-labelledby='repositories-heading'>
+    <section className='min-w-0' aria-labelledby='repositories-heading'>
       <div className='mb-6 gap-4 sm:flex-row sm:items-end sm:justify-between flex flex-col'>
         <div>
           <p className='text-primary mb-2 text-xs font-bold tracking-[0.18em] uppercase'>Coleção pública</p>
@@ -92,7 +88,7 @@ const RepositoriesContent = ({ orderBy, repositories, setOrder, user }: Reposito
           <p className='text-muted-foreground mt-2 text-sm'>Encontre os projetos mais relevantes deste perfil.</p>
         </div>
 
-        <label className='gap-2 relative flex shrink-0 items-center'>
+        <label className='gap-2 max-sm:w-full max-sm:justify-between relative flex shrink-0 items-center'>
           <span className='text-muted-foreground text-xs font-medium'>Ordenar por</span>
 
           <span className='relative'>

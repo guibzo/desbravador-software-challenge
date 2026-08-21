@@ -1,8 +1,8 @@
 import { LucideArrowLeft } from 'lucide-react'
 import { Link, useNavigate } from 'react-router-dom'
 
+import { ErrorState } from '@/components/error-state'
 import { Header } from '@/components/header'
-import { ErrorState } from '@/components/page-state'
 import { useGetRepository } from '@/http/queries/use-get-repository'
 import { RepositoryDetails } from '@/pages/repository/components/repository-details'
 import { RepositoryDetailsSkeleton } from '@/pages/repository/components/repository-details-skeleton'

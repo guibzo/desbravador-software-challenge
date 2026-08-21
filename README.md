@@ -1,24 +1,31 @@
 # RepoScout
 
-Aplicação client-side para explorar usuários e repositórios públicos do GitHub.
+Desafio Front-End da Desbravador Software - Guilherme Viana: aplicação client-side para consultar usuários e repositórios públicos do GitHub.
 
-## Executar localmente
+## Executar
 
 ```bash
 pnpm install
-pnpm dev
+pnpm run dev
 ```
 
-A aplicação usa a API pública do GitHub, sem necessidade de configurar uma chave.
+A aplicação utiliza a API pública do GitHub e não exige token.
 
 ## Funcionalidades
 
-- Busca de usuários do GitHub com avatar, bio, estatísticas e links públicos.
-- Lista de repositórios ordenada por estrelas, nome, forks ou data de atualização.
-- Página de detalhes com métricas, tópicos e link para o repositório no GitHub.
-- Rotas client-side para home (`/`), usuário (`/users/:username`) e repositório (`/repos/:owner/:repository`).
+- Busca de usuários com avatar, bio, localização e estatísticas.
+- Listagem de repositórios públicos ordenada por estrelas, nome, forks ou atualização.
+- Ordenação persistida na URL através do parâmetro `orderBy`.
+- Detalhes do repositório com métricas, tópicos e link para o GitHub.
+- Estados de carregamento com skeletons, erros e ausência de resultados.
 - Layout responsivo.
 
-## Tecnologias
+## Rotas
 
-React, TypeScript, Vite, Tailwind CSS, TanStack Query, React Router DOM, hook de debounce próprio e Fetch API.
+- `/` — página inicial e busca.
+- `/users/:username` — repositórios e informações do usuário.
+- `/repos/:owner/:repository` — detalhes do repositório.
+
+## Stack
+
+React, TypeScript 7, Vite, Tailwind CSS, TanStack Query, React Router DOM, nuqs e Fetch API.

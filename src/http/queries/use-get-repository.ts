@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query'
 
+import type { GithubRepository } from '@/@types/github-repository'
 import { usegithub } from '@/hooks/use-github'
-import type { GithubRepository } from '@/types/github-repository'
 
 export const useGetRepository = (owner: string, repository: string) => {
   const { getRepository } = usegithub()

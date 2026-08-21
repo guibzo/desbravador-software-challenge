@@ -1,8 +1,8 @@
 import { LucideExternalLink, LucideGitFork, LucideStar } from 'lucide-react'
 import { Link } from 'react-router-dom'
 
+import type { GithubRepository } from '@/@types/github-repository'
 import { formatDate, formatNumber } from '@/lib/format'
-import type { GithubRepository } from '@/types/github-repository'
 
 type Props = {
   repository: GithubRepository
@@ -10,8 +10,8 @@ type Props = {
 
 export const RepositoryCard = ({ repository }: Props) => (
   <article
-    className='border-border bg-card group rounded-2xl p-5 shadow-sm hover:-translate-y-0.5 hover:shadow-md p-6
-      max-sm:p-5 flex h-full flex-col border transition duration-200'
+    className='border-border bg-card group min-w-0 rounded-2xl p-6 shadow-sm hover:-translate-y-0.5 hover:shadow-md
+      max-sm:p-5 flex h-full max-w-full flex-col overflow-hidden border transition duration-200'
   >
     <div className='gap-4 flex items-start justify-between'>
       <div className='min-w-0'>
@@ -27,7 +27,7 @@ export const RepositoryCard = ({ repository }: Props) => (
           <span className='truncate'>{repository.name}</span>
         </Link>
 
-        <p className='text-muted-foreground mt-3 min-h-10 text-sm leading-5 line-clamp-2'>
+        <p className='text-muted-foreground mt-3 min-h-10 max-lg:max-w-md text-sm leading-5 line-clamp-2'>
           {repository.description || 'Este repositório não possui uma descrição.'}
         </p>
       </div>

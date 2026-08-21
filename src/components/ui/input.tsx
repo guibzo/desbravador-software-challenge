@@ -15,5 +15,3 @@ export const Input = forwardRef<HTMLInputElement, Props>(({ className, ...props 
     {...props}
   />
 ))
-
-Input.displayName = 'Input'

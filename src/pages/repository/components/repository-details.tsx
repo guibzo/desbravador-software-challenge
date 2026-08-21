@@ -9,31 +9,29 @@ import {
 } from 'lucide-react'
 import type { ReactNode } from 'react'
 
+import type { GithubRepository } from '@/@types/github-repository'
 import { Button } from '@/components/ui/button'
 import { formatDate, formatNumber } from '@/lib/format'
-import type { GithubRepository } from '@/types/github-repository'
 
 export const RepositoryDetails = ({ repository }: { repository: GithubRepository }) => (
   <article>
     <div className='border-border bg-card rounded-2xl p-8 shadow-sm max-sm:p-6 border'>
-      <div className='gap-6 max-sm:flex-col flex-row items-start justify-between'>
-        <div className='gap-4 flex items-start'>
-          <span className='bg-primary/10 text-primary size-12 rounded-xl flex shrink-0 items-center justify-center'>
-            <LucideCode2 size={24} />
-          </span>
-          <div className='min-w-0'>
-            <p className='text-muted-foreground mb-1 text-sm'>{repository.owner.login} /</p>
-            <h1 className='text-3xl font-bold tracking-tight max-sm:text-2xl break-all'>{repository.name}</h1>
-            <p className='text-muted-foreground mt-3 max-w-2xl leading-6'>
-              {repository.description || 'Este repositório não possui uma descrição.'}
-            </p>
-          </div>
+      <div className='gap-6 max-sm:flex-col flex items-start'>
+        <span className='bg-primary/10 text-primary size-12 rounded-xl flex shrink-0 items-center justify-center'>
+          <LucideCode2 size={24} />
+        </span>
+        <div className='min-w-0 relative flex-1'>
+          <p className='text-muted-foreground text-sm md:pr-44'>{repository.owner.login} /</p>
+          <h1 className='text-3xl font-bold tracking-tight max-sm:text-2xl md:pr-48 break-all'>{repository.name}</h1>
+          <p className='text-muted-foreground mt-3 max-w-2xl leading-6'>
+            {repository.description || 'Este repositório não possui uma descrição.'}
+          </p>
+          <Button asChild variant='outline' className='mt-3 md:absolute md:top-0 md:right-0 md:mt-0 md:w-auto w-full'>
+            <a href={repository.html_url} target='_blank' rel='noreferrer'>
+              <LucideExternalLink size={16} /> Abrir no GitHub
+            </a>
+          </Button>
         </div>
-        <Button asChild variant='outline' className='max-sm:w-full w-auto'>
-          <a href={repository.html_url} target='_blank' rel='noreferrer'>
-            <LucideExternalLink size={16} /> Abrir no GitHub
-          </a>
-        </Button>
       </div>
 
       <div className='mt-8 gap-2 flex flex-wrap'>
