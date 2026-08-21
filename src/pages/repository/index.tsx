@@ -19,7 +19,7 @@ export const Repository = ({ owner, repository }: Props) => {
   return (
     <div className='bg-background min-h-screen'>
       <Header onSearch={(username) => navigate(`/users/${encodeURIComponent(username)}`)} />
-      <main className='max-w-5xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8 container mx-auto'>
+      <main className='max-w-5xl px-6 py-12 max-sm:px-4 max-sm:py-8 lg:px-8 container mx-auto'>
         <Link
           to={`/users/${encodeURIComponent(owner)}`}
           className='text-muted-foreground hover:text-primary mb-8 gap-2 text-sm font-medium inline-flex items-center

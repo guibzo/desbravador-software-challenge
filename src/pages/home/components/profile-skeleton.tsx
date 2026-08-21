@@ -1,9 +1,9 @@
 import { Skeleton } from '@/components/ui/skeleton'
 
 export const ProfileSkeleton = () => (
-  <div className='border-border bg-card rounded-2xl p-5 shadow-sm sm:p-6 border'>
+  <div className='border-border bg-card rounded-2xl p-6 shadow-sm max-sm:p-5 border'>
     <div className='gap-2 flex flex-col items-center'>
-      <Skeleton className='size-20 rounded-2xl sm:size-24' />
+      <Skeleton className='size-24 rounded-2xl max-sm:size-20' />
       <Skeleton className='mt-2 h-5 w-32' />
       <Skeleton className='h-4 w-20' />
     </div>

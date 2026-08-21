@@ -15,21 +15,21 @@ import type { GithubRepository } from '@/types/github-repository'
 
 export const RepositoryDetails = ({ repository }: { repository: GithubRepository }) => (
   <article>
-    <div className='border-border bg-card rounded-2xl p-6 shadow-sm sm:p-8 border'>
-      <div className='gap-6 sm:flex-row sm:items-start sm:justify-between flex flex-col'>
+    <div className='border-border bg-card rounded-2xl p-8 shadow-sm max-sm:p-6 border'>
+      <div className='gap-6 max-sm:flex-col flex-row items-start justify-between'>
         <div className='gap-4 flex items-start'>
           <span className='bg-primary/10 text-primary size-12 rounded-xl flex shrink-0 items-center justify-center'>
             <LucideCode2 size={24} />
           </span>
           <div className='min-w-0'>
             <p className='text-muted-foreground mb-1 text-sm'>{repository.owner.login} /</p>
-            <h1 className='text-2xl font-bold tracking-tight sm:text-3xl break-all'>{repository.name}</h1>
+            <h1 className='text-3xl font-bold tracking-tight max-sm:text-2xl break-all'>{repository.name}</h1>
             <p className='text-muted-foreground mt-3 max-w-2xl leading-6'>
               {repository.description || 'Este repositório não possui uma descrição.'}
             </p>
           </div>
         </div>
-        <Button asChild variant='outline' className='sm:w-auto w-full'>
+        <Button asChild variant='outline' className='max-sm:w-full w-auto'>
           <a href={repository.html_url} target='_blank' rel='noreferrer'>
             <LucideExternalLink size={16} /> Abrir no GitHub
           </a>
@@ -44,7 +44,10 @@ export const RepositoryDetails = ({ repository }: { repository: GithubRepository
         ))}
       </div>
 
-      <div className='border-border mt-8 sm:grid-cols-4 sm:divide-y-0 grid grid-cols-2 divide-x divide-y border-y'>
+      <div
+        className='border-border mt-8 max-sm:grid-cols-2 max-sm:divide-y grid grid-cols-4 divide-x divide-y divide-y-0
+          border-y'
+      >
         <Stat icon={<LucideStar size={17} />} value={formatNumber(repository.stargazers_count)} label='estrelas' />
         <Stat icon={<LucideGitFork size={17} />} value={formatNumber(repository.forks_count)} label='forks' />
         <Stat icon={<LucideGitBranch size={17} />} value={repository.default_branch} label='branch padrão' />
@@ -64,7 +67,7 @@ export const RepositoryDetails = ({ repository }: { repository: GithubRepository
       </div>
     </div>
 
-    <div className='mt-5 gap-5 sm:grid-cols-3 grid'>
+    <div className='mt-5 gap-5 max-sm:grid-cols-1 grid grid-cols-3'>
       <InfoCard label='Issues abertas' value={formatNumber(repository.open_issues_count)} />
       <InfoCard label='Observadores' value={formatNumber(repository.watchers_count)} />
       <InfoCard label='Tamanho do projeto' value={`${formatNumber(repository.size)} KB`} />
@@ -73,7 +76,7 @@ export const RepositoryDetails = ({ repository }: { repository: GithubRepository
 )
 
 const Stat = ({ icon, value, label }: { icon: ReactNode; value: string; label: string }) => (
-  <div className='min-w-0 gap-3 px-3 py-4 sm:px-5 flex items-center'>
+  <div className='min-w-0 gap-3 px-5 py-4 max-sm:px-3 flex items-center'>
     <span className='text-primary shrink-0'>{icon}</span>
     <div className='min-w-0'>
       <p className='text-foreground text-sm font-bold truncate'>{value}</p>

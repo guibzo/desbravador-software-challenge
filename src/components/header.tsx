@@ -24,7 +24,7 @@ export const Header = ({ initialUsername = '', onSearch }: Props) => {
 
   return (
     <header className='border-border/80 bg-card/90 top-0 backdrop-blur-md sticky z-10 border-b'>
-      <div className='max-w-7xl gap-4 px-4 py-4 sm:px-6 lg:px-8 container mx-auto flex flex-wrap items-center'>
+      <div className='max-w-7xl gap-4 px-6 py-4 max-sm:px-4 lg:px-8 container mx-auto flex flex-wrap items-center'>
         <Link to='/' className='text-foreground gap-2.5 font-bold tracking-tight flex items-center'>
           <span
             className='bg-primary text-primary-foreground size-9 rounded-xl shadow-sm flex items-center justify-center'
@@ -39,7 +39,8 @@ export const Header = ({ initialUsername = '', onSearch }: Props) => {
         {onSearch && (
           <form
             onSubmit={handleSubmit}
-            className='sm:order-0 sm:ml-auto sm:w-auto sm:min-w-75 lg:min-w-95 order-3 w-full'
+            className='min-w-75 max-sm:order-3 max-sm:ml-0 max-sm:w-full max-sm:min-w-0 lg:min-w-95 order-0 ml-auto
+              w-auto'
           >
             <label className='relative block'>
               <span className='sr-only'>Buscar usuário do GitHub</span>

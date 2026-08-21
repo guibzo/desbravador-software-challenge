@@ -18,15 +18,16 @@ export const ProfileCard = ({ user }: Props) => {
   const website = user.blog ? (user.blog.startsWith('http') ? user.blog : `https://${user.blog}`) : null
 
   return (
-    <aside className='border-border bg-card rounded-2xl p-5 shadow-sm sm:p-6 lg:sticky lg:top-24 h-fit border'>
+    <aside className='border-border bg-card rounded-2xl p-6 shadow-sm max-sm:p-5 lg:sticky lg:top-24 h-fit border'>
       <div className='flex flex-col items-center text-center'>
         <img
           src={user.avatar_url}
           alt={`Avatar de ${user.login}`}
-          className='size-20 rounded-2xl ring-primary/10 sm:size-24 ring-4'
+          className='size-24 rounded-2xl ring-primary/10 max-sm:size-20 ring-4'
         />
+
         <div className='mt-4 min-w-0 max-w-full'>
-          <h2 className='text-xl font-bold tracking-tight break-words'>{user.name || user.login}</h2>
+          <h2 className='text-xl font-bold tracking-tight wrap-break-word'>{user.name || user.login}</h2>
           <a
             href={user.html_url}
             target='_blank'

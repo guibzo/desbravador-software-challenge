@@ -10,8 +10,8 @@ type Props = {
 
 export const RepositoryCard = ({ repository }: Props) => (
   <article
-    className='border-border bg-card group rounded-2xl p-5 shadow-sm hover:-translate-y-0.5 hover:shadow-md sm:p-6 flex
-      h-full flex-col border transition duration-200'
+    className='border-border bg-card group rounded-2xl p-5 shadow-sm hover:-translate-y-0.5 hover:shadow-md p-6
+      max-sm:p-5 flex h-full flex-col border transition duration-200'
   >
     <div className='gap-4 flex items-start justify-between'>
       <div className='min-w-0'>
